@@ -20,22 +20,26 @@ class DataConfig(BaseModel):
     height: int
 
 
-class Config(BaseModel):
-    project_name: str
-    experiment_name: str
-    data_config: DataConfig
+class TrainConfig(BaseModel):
     n_epochs: int
-    num_classes: int
     accelerator: str
     device: int
-    monitor_metric: str
-    monitor_mode: str
     model_kwargs: dict
     optimizer: str
     optimizer_kwargs: dict
     scheduler: str
     scheduler_kwargs: dict
+
+
+class Config(BaseModel):
+    project_name: str
+    experiment_name: str
+    data_config: DataConfig
+    num_classes: int
+    monitor_metric: str
+    monitor_mode: str
     losses: List[LossConfig]
+    train_config: TrainConfig
 
     @classmethod
     def from_yaml(cls, path: str) -> 'Config':
