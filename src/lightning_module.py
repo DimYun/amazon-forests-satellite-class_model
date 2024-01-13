@@ -94,5 +94,3 @@ class PlanetsModule(pl.LightningModule):
             self.log(f'{prefix}{cur_loss.name}_loss', loss.item())
         self.log(f'{prefix}total_loss', total_loss.item())
         return total_loss
-
-

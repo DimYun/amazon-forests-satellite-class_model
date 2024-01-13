@@ -24,11 +24,20 @@ make download_dataset
    ```
     make install
    ```
+   
+3. Запуск линтеров
+   ```
+   make lint
+   ``` 
 
-3. Логи в [ClearML](https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/ad36b4c4865a46bc83bc64d8d04e434c/hyper-params/hyper-param/General?columns=selected&columns=type&columns=name&columns=tags&columns=status&columns=project.name&columns=users&columns=started&columns=last_update&columns=last_iteration&columns=parent.name&order=-last_update&filter=)
+4. Логи в ClearML
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/78c7ddf4b6e549469c395b422758e0fa/output/execution
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/c13b215c07ec48f587d3ec8f5f1cf970/output/execution
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/ad36b4c4865a46bc83bc64d8d04e434c/output/execution
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution
 
 
-4. Настраиваем [config.yaml](configs/config.yaml) под себя.
+5. Настраиваем [config.yaml](configs/config.yaml) под себя.
 
 
 ### Обучение

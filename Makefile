@@ -8,3 +8,6 @@ download_dataset:
 
 train:
 	PYTHONPATH=. python src/train.py configs/config.yaml
+
+lint:
+	PYTHONPATH=. flake8 src
