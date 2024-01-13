@@ -15,4 +15,6 @@ clearml==1.11.1
 dvc[ssh]
 onnxruntime
 onnx
-
+nbstripout
+nbconvert
+jupyter
