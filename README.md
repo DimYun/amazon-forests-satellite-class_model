@@ -35,6 +35,7 @@ make download_dataset
 - https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/c13b215c07ec48f587d3ec8f5f1cf970/output/execution
 - https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/ad36b4c4865a46bc83bc64d8d04e434c/output/execution
 - https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/df4a05465fdb4a4582de97f760fc0a30/output/metrics/scalar
 
 
 5. Настраиваем [config.yaml](configs/config.yaml) под себя.
