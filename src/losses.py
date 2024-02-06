@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from torch import nn
 from typing import List
+
+from torch import nn
 
 from src.config import LossConfig
 from src.train_utils import load_object

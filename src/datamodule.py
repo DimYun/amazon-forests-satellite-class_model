@@ -1,7 +1,9 @@
 import os
-from typing import Optional
+from typing import Any, Optional
 
+import numpy as np
 import pandas as pd
+from numpy import dtype, ndarray
 from pytorch_lightning import LightningDataModule
 from torch.utils.data import DataLoader, Dataset
 
@@ -15,7 +17,7 @@ class PlanetDM(LightningDataModule):
     def __init__(self, config: DataConfig):
         super().__init__()
         self._config = config
-        self._images_folder = os.path.join(self._config.data_path, 'train-jpg')
+        self._images_folder = os.path.join(self._config.data_path, "train-jpg")
 
         self.train_dataset: Optional[Dataset] = None
         self.valid_dataset: Optional[Dataset] = None
@@ -25,26 +27,47 @@ class PlanetDM(LightningDataModule):
         split_and_save_datasets(self._config.data_path, self._config.train_size)
 
     def setup(self, stage: Optional[str] = None):
-        if stage == 'fit':
-            df_train = read_df(self._config.data_path, 'train')
-            df_valid = read_df(self._config.data_path, 'valid')
+        if stage == "fit":
+            image_names_train, image_labels_train = read_df(
+                self._config.data_path,
+                "train",
+            )
+            image_names_valid, image_labels_valid = read_df(
+                self._config.data_path,
+                "valid",
+            )
             self.train_dataset = PlanetDataset(
-                df_train,
+                image_names_train,
+                image_labels_train,
                 image_folder=self._images_folder,
-                transforms=get_transforms(width=self._config.width, height=self._config.height),
+                transforms=get_transforms(
+                    width=self._config.width,
+                    height=self._config.height,
+                ),
             )
             self.valid_dataset = PlanetDataset(
-                df_valid,
+                image_names_valid,
+                image_labels_valid,
                 image_folder=self._images_folder,
-                transforms=get_transforms(width=self._config.width, height=self._config.height),
+                transforms=get_transforms(
+                    width=self._config.width,
+                    height=self._config.height,
+                ),
             )
 
-        elif stage == 'test':
-            df_test = read_df(self._config.data_path, 'test')
+        elif stage == "test":
+            image_names_test, image_labels_test = read_df(
+                self._config.data_path,
+                "test",
+            )
             self.test_dataset = PlanetDataset(
-                df_test,
+                image_names_test,
+                image_labels_test,
                 image_folder=self._images_folder,
-                transforms=get_transforms(width=self._config.width, height=self._config.height),
+                transforms=get_transforms(
+                    width=self._config.width,
+                    height=self._config.height,
+                ),
             )
 
     def train_dataloader(self) -> DataLoader:
@@ -79,15 +102,21 @@ class PlanetDM(LightningDataModule):
 
 
 def split_and_save_datasets(data_path: str, train_fraction: float = 0.8):
-    df = pd.read_csv(os.path.join(data_path, 'df_train_ohe.csv'))
+    df = pd.read_csv(os.path.join(data_path, "df_train_ohe.csv"))
     df = df.drop_duplicates()
 
-    train_df, valid_df, test_df = stratify_shuffle_split_subsets(df, train_fraction=train_fraction)
+    train_df, valid_df, test_df = stratify_shuffle_split_subsets(
+        df,
+        train_fraction=train_fraction,
+    )
 
-    train_df.to_csv(os.path.join(data_path, 'df_train.csv'), index=False)
-    valid_df.to_csv(os.path.join(data_path, 'df_valid.csv'), index=False)
-    test_df.to_csv(os.path.join(data_path, 'df_test.csv'), index=False)
+    train_df.to_csv(os.path.join(data_path, "df_train.csv"), index=False)
+    valid_df.to_csv(os.path.join(data_path, "df_valid.csv"), index=False)
+    test_df.to_csv(os.path.join(data_path, "df_test.csv"), index=False)
 
 
-def read_df(data_path: str, mode: str) -> pd.DataFrame:
-    return pd.read_csv(os.path.join(data_path, f'df_{mode}.csv'))
+def read_df(data_path: str, mode: str) -> tuple[Any, ndarray[Any, dtype[Any]]]:
+    df = pd.read_csv(os.path.join(data_path, f"df_{mode}.csv"))
+    image_names = df["Id"].to_numpy()
+    image_labels = np.array(df.drop(["Id"], axis=1), dtype="float32")
+    return image_names, image_labels

@@ -1,4 +1,7 @@
 import os
+from pathlib import Path
 
-PROJECT_PATH = os.path.abspath(os.path.join(os.path.dirname(os.path.realpath(__file__)), '..'))
-EXPERIMENTS_PATH = os.path.join(PROJECT_PATH, 'experiments')
+_DEFAULT_PROJECT_PATH = Path(__file__).resolve().parents[1]
+
+PROJECT_ROOT = Path(os.getenv("PROJ_ROOT", _DEFAULT_PROJECT_PATH))
+EXPERIMENTS_PATH = PROJECT_ROOT / "experiments"

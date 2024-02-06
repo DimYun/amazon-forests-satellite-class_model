@@ -6,8 +6,14 @@ download_dataset:
 	unzip dataset.zip
 	rm dataset.zip
 
+upload_weit:
+	rsync -aP experiments user@test_server:/home/user/experiments
+
 train:
 	PYTHONPATH=. python src/train.py configs/config.yaml
 
 lint:
 	PYTHONPATH=. flake8 src
+	PYTHONPATH=. nbstripout notebooks/*.ipynb
+	PYTHONPATH=. black src
+	PYTHONPATH=. isort src

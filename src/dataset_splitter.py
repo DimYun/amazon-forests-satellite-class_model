@@ -2,7 +2,8 @@ from typing import List, Tuple
 
 import numpy as np
 import pandas as pd
-from skmultilearn.model_selection.iterative_stratification import IterativeStratification
+from skmultilearn.model_selection.iterative_stratification import \
+    IterativeStratification
 
 
 def stratify_shuffle_split_subsets(
@@ -11,13 +12,17 @@ def stratify_shuffle_split_subsets(
 ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """Разбиение датасета на train/valid/test."""
 
-    x_columns = ['Id']
-    y_columns = list(annotation.select_dtypes('int').columns)
+    x_columns = ["Id"]
+    y_columns = list(annotation.select_dtypes("int").columns)
 
     all_x = annotation[x_columns].to_numpy()
     all_y = annotation[y_columns].to_numpy()
 
-    train_indexes, else_indexes = _split(all_x, all_y, distribution=[1 - train_fraction, train_fraction])
+    train_indexes, else_indexes = _split(
+        all_x,
+        all_y,
+        distribution=[1 - train_fraction, train_fraction],
+    )
     x_train, x_else = all_x[train_indexes], all_x[else_indexes]
     y_train, y_else = all_y[train_indexes], all_y[else_indexes]
 
@@ -25,9 +30,27 @@ def stratify_shuffle_split_subsets(
     x_test, x_valid = x_else[test_indexes], x_else[valid_indexes]
     y_test, y_valid = y_else[test_indexes], y_else[valid_indexes]
 
-    train_subset = pd.DataFrame(data=np.concatenate([x_train, y_train], axis=1), columns=x_columns + y_columns)
-    valid_subset = pd.DataFrame(data=np.concatenate([x_valid, y_valid], axis=1), columns=x_columns + y_columns)
-    test_subset = pd.DataFrame(data=np.concatenate([x_test, y_test], axis=1), columns=x_columns + y_columns)
+    train_subset = pd.DataFrame(
+        data=np.concatenate(
+            [x_train, y_train],
+            axis=1,
+        ),
+        columns=x_columns + y_columns,
+    )
+    valid_subset = pd.DataFrame(
+        data=np.concatenate(
+            [x_valid, y_valid],
+            axis=1,
+        ),
+        columns=x_columns + y_columns,
+    )
+    test_subset = pd.DataFrame(
+        data=np.concatenate(
+            [x_test, y_test],
+            axis=1,
+        ),
+        columns=x_columns + y_columns,
+    )
 
     return train_subset, valid_subset, test_subset
 
@@ -37,6 +60,9 @@ def _split(
     ys: np.array,
     distribution: List[float],
 ) -> Tuple[np.array, np.array]:
-    stratifier = IterativeStratification(n_splits=2, sample_distribution_per_fold=distribution)
+    stratifier = IterativeStratification(
+        n_splits=2,
+        sample_distribution_per_fold=distribution,
+    )
     first_indexes, second_indexes = next(stratifier.split(X=xs, y=ys))
     return first_indexes, second_indexes

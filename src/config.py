@@ -42,6 +42,6 @@ class Config(BaseModel):
     train_config: TrainConfig
 
     @classmethod
-    def from_yaml(cls, path: str) -> 'Config':
+    def from_yaml(cls, path: str) -> "Config":
         cfg = OmegaConf.to_container(OmegaConf.load(path), resolve=True)
         return cls(**cfg)

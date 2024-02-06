@@ -12,9 +12,9 @@ torchvision==0.15.2
 timm==0.9.2
 torchmetrics== 1.0.1
 clearml==1.11.1
-dvc[ssh]
-onnxruntime
-onnx
-nbstripout
-nbconvert
-jupyter
+dvc[ssh]==3.0.0
+onnxruntime==1.16.3
+onnx==1.15.0
+nbstripout==0.6.1
+nbconvert==7.14.0
+jupyter==1.0.0

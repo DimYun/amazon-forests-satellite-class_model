@@ -2,6 +2,8 @@
 
 ## 11.01.2024, Дмитрий
 
+- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/78c7ddf4b6e549469c395b422758e0fa/output/execution
+
 ### Что не зашло
 - efficientnet_b0 - общая метрика ниже 70%
 
@@ -24,6 +26,8 @@
 ---
 
 ## 11.01.2024, Дмитрий
+
+выбран для прода
 
 ### Что зашло
  

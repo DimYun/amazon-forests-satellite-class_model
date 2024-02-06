@@ -15,7 +15,10 @@ def get_transforms(
         transforms.append(albu.Resize(height=height, width=width))
 
     if augmentations:
-        loaded_transform = albu.load('../configs/augmentations_conf.yaml', data_format='yaml')
+        loaded_transform = albu.load(
+            "configs/augmentations_conf.yaml",
+            data_format="yaml",
+        )
         transforms_list = loaded_transform.transforms
         transforms.extend(
             transforms_list,
