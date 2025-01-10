@@ -13,7 +13,8 @@ Multilabel classification NN solution for Amazon forests satellite image. I made
 
 * the project was originally crated and maintained in GitLab local instance, some repo functionality may be unenviable
 * the project was created by me and me only as part of the CVRocket professional development course
-* here is a short train version of NN (about 15 epochs)
+* here are a short trained version of NNs (about 15 epochs each)
+* this project is my first "industry grade" NN, for more advanced code and features please see [car-plate projects](https://github.com/DimYun/car-plate-segm_model)
 
 
 ### [Dataset](https://www.kaggle.com/datasets/nikitarom/planets-dataset/download?datasetVersionNumber=3)
@@ -55,6 +56,6 @@ make train
 
 ### Additional information
 
-* Inference example in [notebook](notebooks/inference.ipynb).
-* [Best experiment logs in ClearML](https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution)
-* [Experiments history](HISTORY.md)
+* Inference example in [notebook](notebooks/inference.ipynb)
+* [Best experiment in ClearML](https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution)
+* [History of experiments](HISTORY.md)
