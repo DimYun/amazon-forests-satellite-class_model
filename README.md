@@ -1,57 +1,60 @@
-## Домашняя работа №1
+## Type of Amazon forests satellite image
 
-Решение задачи мультилейбл классификации на примере определения типа спутникового снимка лесов Амазонки.
+Multilabel classification NN solution for Amazon forests satellite image. I made accent on "industrial quality" code with next technologies:
 
-### Датасет
+* pytorch_lightning
+* timm
+* ClearML
+* linters (black, isort, nbstripout, flake8)
+* types with pydantic
+* DVC for local usage
 
-Включает 40479 тайлов спутниковых снимков в формате `jpg` и 17 типов изображений. Более подробная информация в [тетрадке](notebooks/EDA.ipynb). 
+**Disclaimers**:
 
-Скачать датасет (он окажется в папке dataset):
+* the project was originally crated and maintained in GitLab local instance, some repo functionality may be unenviable
+* the project was created by me and me only as part of the CVRocket professional development course
+* here is a short train version of NN (about 15 epochs)
+
+
+### [Dataset](https://www.kaggle.com/datasets/nikitarom/planets-dataset/download?datasetVersionNumber=3)
+
+Include 40479 tiles of satellite image in `jpg` and 17 image types. More information about data you can find in [notebook](notebooks/EDA.ipynb). 
+
+To download dataset from kaggle into `dataset` folder:
 
 ```bash
 make download_dataset
 ```
 
-### Подготовка окружения
+### How to run
 
-1. Создание и активация окружения
+1. Create and activate python environment
     ```bash
     python3 -m venv venv
     . venv/bin/activate
     ```
 
-2. Установка библиотек
-   ```
+2. Install libraries
+   ```bash
     make install
    ```
-   
-3. Запуск линтеров
-   ```
+
+3. Run linters
+   ```bash
    make lint
-   ``` 
+   ```
 
-4. Логи лучшего эксперимента в ClearML
+4. Tune [config.yaml](configs/config.yaml)
 
-- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/c13b215c07ec48f587d3ec8f5f1cf970/output/execution
-- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/ad36b4c4865a46bc83bc64d8d04e434c/output/execution
-- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution
-- https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/df4a05465fdb4a4582de97f760fc0a30/output/execution
-
-
-5. Настраиваем [config.yaml](configs/config.yaml) под себя.
-
-
-### Обучение
-
-Запуск тренировки:
+5. Train
 
 ```bash
 make train
 ```
 
-### Инеренс
 
-Посмотреть результаты работы обученной сети можно посмотреть в [тетрадке](notebooks/inference.ipynb).
+### Additional information
 
-
-All fixed!
+* Inference example in [notebook](notebooks/inference.ipynb).
+* [Best experiment logs in ClearML](https://app.clear.ml/projects/ad24a8e7ed7744c8bf6216f8b8c710cf/experiments/f9a15c5e1c9b4b9999e4ff8b1163ebc4/output/execution)
+* [Experiments history](HISTORY.md)
