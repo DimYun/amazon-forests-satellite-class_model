@@ -1,4 +1,4 @@
-## Type of Amazon forests satellite image
+## Type of Amazon forests satellite image. Model
 
 Multilabel classification NN solution for Amazon forests satellite image. I made accent on "industrial quality" code with next technologies:
 
@@ -11,7 +11,7 @@ Multilabel classification NN solution for Amazon forests satellite image. I made
 
 **Disclaimers**:
 
-* the project was originally crated and maintained in GitLab local instance, some repo functionality may be unenviable
+* the project was originally crated and maintained in GitLab local instance, some repo functionality may be unavailable
 * the project was created by me and me only as part of the CVRocket professional development course
 * here are a short trained version of NNs (about 15 epochs each)
 * this project is my first "industry grade" NN, for more advanced code and features please see [car-plate projects](https://github.com/DimYun/car-plate-segm_model)
@@ -48,10 +48,9 @@ make download_dataset
 4. Tune [config.yaml](configs/config.yaml)
 
 5. Train
-
-```bash
-make train
-```
+   ```bash
+   make train
+   ```
 
 
 ### Additional information
